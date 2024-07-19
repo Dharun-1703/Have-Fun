@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Have Fun</title>
+    <link rel="shortcut icon" href="images/joker.png" type="image/x-icon">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Have Fun <img src="images/joker.png" alt="Joker"></h1>
+        
+        <form action="/" method="post">
+            <label for="Category">Category: </label>
+            <select name="Category" id="Category">
+                <option value="Any" selected>Any</option>
+                <option value="Programming">Programming</option>
+                <option value="Misc">Miscellaneous</option>
+                <option value="Dark">Dark</option>
+                <option value="Pun">Pun</option>
+                <option value="Spooky">Spooky</option>
+                <option value="Christmas">Christmas</option>
+            </select>
+            <label for="lang">Language</label>
+            <select name="lang" id="lang">
+                <option value="cs">Czech</option>
+                <option value="en" selected>English</option>
+                <option value="de">German</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="pt">Portugese</option>
+            </select>
+            <label for="String">String</label>
+            <input type="text" id="String" name="String">
+            <label for="Aoj">Amount Of Joke</label>
+            <input type="text" id="Aoj" name="Aoj">
+            <input type="submit" value="Submit">
+        </form>
+
+        <h2>
+            <% if(locals.co) {%>
+            <%if (locals.co.message) { %>
+                <%= co.message %>
+            <% }else if(locals.co.amount>1){%>
+                <% for( let i = 0; i < locals.co.amount; i++ ) { %>
+                    <%= i+1 %>.
+                    <% if(locals.co.jokes[i].type=='twopart') {%>
+                            <%= co.jokes[i].setup %> : <%= co.jokes[i].delivery %></br>
+                    <% }else {%>
+                        <%= co.jokes[i].joke %></br>
+                    <% } %>
+                 <% }%>
+            <% } else{ %>
+                <% if(locals.co.type=='twopart'){%>
+                    1. <%= co.setup %> : <%= co.delivery %>
+                <% } else { %>
+                     1. <%= co.joke %>
+                <% } %>
+            <% } %>
+            <% } %>
+        </h2>
+    </div>
+</body>
+</html>
